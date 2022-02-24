@@ -1,0 +1,16 @@
+[remap]
+
+importer="antonWetzel.importHelper.blender.PackedScene"
+type="PackedScene"
+uid="uid://b6y332n0xpsnk"
+path="res://.godot/imported/Cubes.blend-dddb6f44b34e79c4c84841ad8476e027.tscn"
+
+[deps]
+
+source_file="res://Cubes.blend"
+dest_files=["res://.godot/imported/Cubes.blend-dddb6f44b34e79c4c84841ad8476e027.tscn"]
+
+[params]
+
+open_editor=0
+apply_modifiers=true

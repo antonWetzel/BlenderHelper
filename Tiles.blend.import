@@ -1,0 +1,17 @@
+[remap]
+
+importer="antonWetzel.importHelper.blender.MeshLibrary"
+type="MeshLibrary"
+uid="uid://diax174w45ojd"
+path="res://.godot/imported/Tiles.blend-2f137300f0bb894d78f390ed98331b2c.meshlib"
+
+[deps]
+
+source_file="res://Tiles.blend"
+dest_files=["res://.godot/imported/Tiles.blend-2f137300f0bb894d78f390ed98331b2c.meshlib"]
+
+[params]
+
+open_editor=1
+apply_modifiers=true
+create_collision=false

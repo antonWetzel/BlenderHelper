@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj06tnbvlk1vf"]
+
+[ext_resource type="PackedScene" uid="uid://b6y332n0xpsnk" path="res://Cubes.blend" id="1_3nsht"]
+[ext_resource type="MeshLibrary" uid="uid://diax174w45ojd" path="res://Tiles.blend" id="2_gt1ou"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Cubes" parent="." instance=ExtResource( "1_3nsht" )]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource( "2_gt1ou" )
+cell_size = Vector3(4, 4, 4)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 65529, 44648, 1, 65529, 44648, 65532, 65529, 44648, 65533, 65529, 44648, 65534, 65529, 44648, 65535, 65529, 44648, 0, 65530, 10170, 1, 65530, 41315, 65532, 65530, 44648, 65533, 65530, 10170, 65534, 65530, 10170, 65535, 65530, 10170, 0, 65531, 41315, 1, 65531, 41315, 65532, 65531, 44648, 65533, 65531, 41315, 65534, 65531, 41315, 65535, 65531, 41315, 0, 65532, 41315, 1, 65532, 41315, 65532, 65532, 10257, 65533, 65532, 41315, 65534, 65532, 41315, 65535, 65532, 41315, 65532, 65533, 10257, 65533, 65533, 41315, 65534, 65533, 41315)
+}
+__meta__ = {
+"_editor_clip_": 0
+}
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.91844, 0.395562, 0, -0.395562, 0.918439, 0, 6.53471, 6.49096)
