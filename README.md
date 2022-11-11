@@ -22,12 +22,14 @@ Godot 4 Import Plugins for Blender
 		- Create Collision: Create convex collision shapes
 
 ## Tested
-- Godot 4 Alpha 3 for Windows
-- Linux or macOS are not tested
+
+- Godot 4 Beta 4 for Windows and Linux
+- Mac-OS is not tested
 	- please create an issue if you encounter a problem
 	- please create an issue if you know where blender is usually located
 
 ## Installation
+
 - Install Plugins
 	- [Official Guide](https://docs.godotengine.org/en/stable/tutorials/plugins/editor/installing_plugins.html)
 - Make **Blender** available (one of the following)
