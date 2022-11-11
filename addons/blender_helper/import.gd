@@ -36,8 +36,7 @@ func _get_visible_name() -> String:
 	return "Import Helper Blender " + _get_resource_type()
 
 func get_file_as_buffer(path: String) -> PackedByteArray:
-	var file := File.new()
-	file.open(path, File.READ)
+	var file =  FileAccess.open(path, FileAccess.READ)
 	var content = file.get_buffer(file.get_length())
 	file.close()
 	return content
@@ -46,14 +45,14 @@ func get_file_name(path: String) -> String:
 	return path.get_file().split(".")[0]
 
 func file_exist(path: String) -> bool:
-	var file = File.new()
+	var file = FileAccess.new()
 	return file.file_exists(path)
 
 func remove_file(path: String) -> int:
-	var dir = Directory.new()
-	if dir.open("res://") != OK:
+	var dir = DirAccess.new()
+	if dir.open("res://") != DirAccess.OK:
 		return FAILED
-	if dir.remove(path) != OK:
+	if dir.remove(path) != DirAccess.OK:
 		return FAILED
 	return OK
 
@@ -62,7 +61,7 @@ func _import(source_file: String, save_path: String, options: Dictionary, platfo
 	#I think source_file should be named source_path because it is not a File but a path (String)
 	var global_file = ProjectSettings.globalize_path(source_file)
 	var res := convert_resource(source_file, global_file, options)
-	return ResourceSaver.save(save_path + "." + _get_save_extension(), res)
+	return ResourceSaver.save(res,save_path + "." + _get_save_extension())
 
 func _get_import_options(path: String, preset_index: int)  -> Array:
 	return [
@@ -145,8 +144,9 @@ func get_blender_command() -> String:
 			pass
 		"Linux":
 			#no clue where blender is on linux
-			pass
-	var file = File.new()
+			locations.append("/usr/bin/blender")
+
+	var file = FileAccess.new()
 	for location in locations:
 		if file.file_exists(location):
 			return location
