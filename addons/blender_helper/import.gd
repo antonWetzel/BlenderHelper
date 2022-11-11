@@ -38,23 +38,16 @@ func _get_visible_name() -> String:
 func get_file_as_buffer(path: String) -> PackedByteArray:
 	var file =  FileAccess.open(path, FileAccess.READ)
 	var content = file.get_buffer(file.get_length())
-	file.close()
 	return content
 
 func get_file_name(path: String) -> String:
 	return path.get_file().split(".")[0]
 
-func file_exist(path: String) -> bool:
-	var file = FileAccess.new()
-	return file.file_exists(path)
-
 func remove_file(path: String) -> int:
-	var dir = DirAccess.new()
-	if dir.open("res://") != DirAccess.OK:
+	var dir = DirAccess.open("res://")
+	if dir == null:
 		return FAILED
-	if dir.remove(path) != DirAccess.OK:
-		return FAILED
-	return OK
+	return dir.remove(path)
 
 
 func _import(source_file: String, save_path: String, options: Dictionary, platform_variants: Array, gen_files: Array) -> int:
@@ -134,21 +127,16 @@ func get_blender_command() -> String:
 	var locations : Array[String] = [ProjectSettings.get(paths.setting_path)]
 	match OS.get_name():
 		"Windows":
-			#locations.append("C:/Program Files (x86)/BLender Foundation/Blender 3.0/blender.exe")
-			locations.append("C:/Program Files/BLender Foundation/Blender 3.0/blender.exe")
+			for version in range(10):
+				locations.append("C:/Program Files/BLender Foundation/Blender 3." + str(version) + "/blender.exe")
 			locations.append("C:/Program Files (x86)/Steam/steamapps/common/Blender/blender.exe")
 		"iOS":
-			#no clue where blender is on macos
-			#locations.append("/Applications/Aseprite.app/Contents/MacOS/aseprite")
-			#locations.append("~/Library/ApplicationSupport/Steam/steamapps/common/Aseprite/Aseprite.app/Contents/MacOS/aseprite")
 			pass
 		"Linux":
-			#no clue where blender is on linux
 			locations.append("/usr/bin/blender")
 
-	var file = FileAccess.new()
 	for location in locations:
-		if file.file_exists(location):
+		if FileAccess.file_exists(location):
 			return location
 
 	var ending := ""
@@ -162,7 +150,7 @@ func get_blender_command() -> String:
 		if location.length() == 0:
 			continue
 		location += "/blender" + ending
-		if file.file_exists(location):
+		if FileAccess.file_exists(location):
 			return location
 	push_error("could not find blender in system path or " + JSON.new().stringify(locations))
 	return ""
